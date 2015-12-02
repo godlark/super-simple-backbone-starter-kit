@@ -8,6 +8,7 @@ require([
     var ApplicationRouter = Backbone.Router.extend({
         routes: {
             "": "login",
+            "home": "home",
             "*actions": "home"
         },
         initialize: function () {
