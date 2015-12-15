@@ -2,8 +2,9 @@ require([
 'libs/text!header.html',
 'libs/text!home.html',
 'libs/text!footer.html',
-'login'
-], function (headerTpl, homeTpl, footerTpl, LoginView) {
+'login',
+'knockout'
+], function (headerTpl, homeTpl, footerTpl, LoginView, ko) {
 
     var ApplicationRouter = Backbone.Router.extend({
         routes: {
@@ -33,10 +34,13 @@ require([
         template: headerTpl,
 
         initialize: function () {
-            // $.get(this.templateFileName, function(data){console.log(data);this.template=data});
+            this.viewModel = {};
+            this.viewModel.options = ko.observableArray([{"_class": "active", "_href": "#", "_text": "Logowanie"}]);
         },
+
         render: function () {
             $(this.el).html(_.template(this.template));
+            ko.applyBindings(this.viewModel, this.el);
         }
     });
 

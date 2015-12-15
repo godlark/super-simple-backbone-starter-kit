@@ -1,6 +1,9 @@
 <div class="login-page">
     <form id="login-form" class="form-horizontal col-sm-5">
         <div class="form-group">
+            <p data-bind="text: loginError" class="bg-danger message"></p>
+        </div>
+        <div class="form-group">
             <label for="username" class="col-sm-5 control-label">Nazwa użytkownika</label>
 
             <div class="col-sm-7">

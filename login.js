@@ -1,6 +1,7 @@
 define([
-'libs/text!login.html'
-], function (template) {
+'libs/text!login.html',
+'knockout'
+], function (template, ko) {
 
     var LoginView = Backbone.View.extend({
         template: template,
@@ -16,15 +17,18 @@ define([
                 Backbone.history.navigate("home", {trigger: true});
             }
             else {
-                alert("Źle!");
+                this.viewModel.loginError("Nieprawidłowa nazwa użytkownika bądź hasło.");
             }
         },
 
         initialize: function () {
-            // $.get(this.templateFileName, function(data){console.log(data);this.template=data});
+            this.viewModel = {};
+            this.viewModel.loginError = ko.observable("");
         },
         render: function () {
             $(this.el).html(_.template(this.template));
+            ko.applyBindings(this.viewModel, this.el);
+            $("#login-form").validator();
         }
     });
 
