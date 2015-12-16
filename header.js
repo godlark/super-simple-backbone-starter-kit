@@ -10,10 +10,15 @@ define([
         initialize: function () {
             this.viewModel = {};
             this.viewModel.options = ko.observable();
+            this.viewModel.signedId = ko.observable(false);
         },
 
         setMenu: function(options) {
             this.viewModel.options(options);
+        },
+
+        setSignedIn: function(signedIn) {
+            this.viewModel.signedId(signedIn);
         },
 
         render: function () {

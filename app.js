@@ -16,6 +16,37 @@ require([
     ];
     var unloggedMenu = [{"_class": "active", "url": "#", "label": "Logowanie"}];
 
+    var rachunki = [
+        {
+            "name": "Rachunek oszczędnościowo-rozliczeniowy",
+            "number": 891000342234221123,
+            "transactions":
+                [
+                    {
+                        "title": "Początkowa wpłata",
+                        "value": 1000.0,
+                        "from_name": "Jan Kowalski",
+                        "from_address": "Warszawa 00-000, ul. Tysiąclecia 1",
+                        "from_number": 232348091343298430
+                    }
+                ]
+        },
+        {
+            "name": "Rachunek oszczędnościowy",
+            "number": 322348091334221123,
+            "transactions":
+                [
+                    {
+                        "title": "Początkowa wpłata",
+                        "value": 500.0,
+                        "from_name": "Joanna Struga-Okoń",
+                        "from_address": "Warszawa 00-000, ul. Tysiąclecia 2",
+                        "from_number": 891000342234221123
+                    }
+                ]
+        }
+    ];
+
     var ApplicationRouter = Backbone.Router.extend({
         routes: {
             "": "login",
@@ -44,35 +75,41 @@ require([
         start: function () {
             this.homeView = new HomeView();
             this.markMenuOption("start");
+            this.headerView.setSignedIn(true);
             this.headerView.setMenu(loggedMenu);
             this.homeView.render();
         },
         przelew: function () {
             this.homeView = new HomeView();
             this.markMenuOption("przelew");
+            this.headerView.setSignedIn(true);
             this.headerView.setMenu(loggedMenu);
             this.homeView.render();
         },
         rachunki: function () {
             this.homeView = new HomeView();
             this.markMenuOption("rachunki");
+            this.headerView.setSignedIn(true);
             this.headerView.setMenu(loggedMenu);
             this.homeView.render();
         },
         kontakty: function () {
             this.homeView = new HomeView();
             this.markMenuOption("kontakty");
+            this.headerView.setSignedIn(true);
             this.headerView.setMenu(loggedMenu);
             this.homeView.render();
         },
         historia: function () {
             this.homeView = new HomeView();
             this.markMenuOption("historia");
+            this.headerView.setSignedIn(true);
             this.headerView.setMenu(loggedMenu);
             this.homeView.render();
         },
         login: function () {
             this.loginView = new LoginView();
+            this.headerView.setSignedIn(false);
             this.headerView.setMenu(unloggedMenu);
             this.loginView.render();
         }
