@@ -1,9 +1,10 @@
 define([
-'libs/text!start.html',
+'backbone',
+'text!kontakty.html',
 'knockout'
-], function (template, ko) {
+], function (Backbone, template, ko) {
 
-    var StartView = Backbone.View.extend({
+    var KontaktyView = Backbone.View.extend({
         el: "#content",
         template: template,
         initialize: function () {
@@ -14,7 +15,7 @@ define([
         }
     });
 
-    return StartView;
+    return KontaktyView;
 });
 
 

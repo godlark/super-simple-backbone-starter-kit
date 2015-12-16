@@ -1,7 +1,8 @@
 define([
-'libs/text!header.html',
+'backbone',
+'text!header.html',
 'knockout'
-], function (template, ko) {
+], function (Backbone, template, ko) {
 
     var HeaderView = Backbone.View.extend({
         el: "#header",

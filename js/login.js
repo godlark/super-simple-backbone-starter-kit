@@ -1,7 +1,9 @@
 define([
-'libs/text!login.html',
-'knockout'
-], function (template, ko) {
+'backbone',
+'text!login.html',
+'knockout',
+'validator'
+], function (Backbone, template, ko) {
 
     var LoginView = Backbone.View.extend({
         template: template,

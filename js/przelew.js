@@ -1,9 +1,10 @@
 define([
-'libs/text!rachunki.html',
+'backbone',
+'text!przelew.html',
 'knockout'
-], function (template, ko) {
+], function (Backbone, template, ko) {
 
-    var RachunkiView = Backbone.View.extend({
+    var PrzelewView = Backbone.View.extend({
         el: "#content",
         template: template,
         initialize: function () {
@@ -14,7 +15,7 @@ define([
         }
     });
 
-    return RachunkiView;
+    return PrzelewView;
 });
 
 

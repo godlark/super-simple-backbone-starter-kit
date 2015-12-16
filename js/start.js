@@ -1,9 +1,10 @@
 define([
-'libs/text!przelew.html',
+'backbone',
+'text!start.html',
 'knockout'
-], function (template, ko) {
+], function (Backbone, template, ko) {
 
-    var PrzelewView = Backbone.View.extend({
+    var StartView = Backbone.View.extend({
         el: "#content",
         template: template,
         initialize: function () {
@@ -14,7 +15,7 @@ define([
         }
     });
 
-    return PrzelewView;
+    return StartView;
 });
 
 

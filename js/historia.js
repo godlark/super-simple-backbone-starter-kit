@@ -1,7 +1,8 @@
 define([
-'libs/text!historia.html',
+'backbone',
+'text!historia.html',
 'knockout'
-], function (template, ko) {
+], function (Backbone, template, ko) {
 
     var HistoriaView = Backbone.View.extend({
         el: "#content",
