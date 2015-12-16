@@ -14,7 +14,7 @@ define([
             e.preventDefault();
             if($("#username").val() == "kotek.marsjanin.29" && $("#password").val() == "alamakota") {
                 //TODO: Komunikat o poprawnym zalogowaniu
-                Backbone.history.navigate("home", {trigger: true});
+                Backbone.history.navigate("start", {trigger: true});
             }
             else {
                 this.viewModel.loginError("Nieprawidłowa nazwa użytkownika bądź hasło.");
