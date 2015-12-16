@@ -1,11 +1,16 @@
 require([
 'libs/text!header.html',
-'libs/text!home.html',
 'libs/text!footer.html',
 'login',
 'header',
+'historia',
+'kontakty',
+'przelew',
+'rachunki',
+'start',
 'knockout'
-], function (headerTpl, homeTpl, footerTpl, LoginView, HeaderView, ko) {
+], function (headerTpl, footerTpl, LoginView, HeaderView, HistoriaView, KontaktyView,
+             PrzelewView, RachunkiView, StartView, ko) {
 
     var loggedMenu = [
         {"_class": ko.observable(), "url": "#start", "label": "Start"},
@@ -73,35 +78,35 @@ require([
             }
         },
         start: function () {
-            this.homeView = new HomeView();
+            this.homeView = new StartView();
             this.markMenuOption("start");
             this.headerView.setSignedIn(true);
             this.headerView.setMenu(loggedMenu);
             this.homeView.render();
         },
         przelew: function () {
-            this.homeView = new HomeView();
+            this.homeView = new PrzelewView();
             this.markMenuOption("przelew");
             this.headerView.setSignedIn(true);
             this.headerView.setMenu(loggedMenu);
             this.homeView.render();
         },
         rachunki: function () {
-            this.homeView = new HomeView();
+            this.homeView = new RachunkiView();
             this.markMenuOption("rachunki");
             this.headerView.setSignedIn(true);
             this.headerView.setMenu(loggedMenu);
             this.homeView.render();
         },
         kontakty: function () {
-            this.homeView = new HomeView();
+            this.homeView = new KontaktyView();
             this.markMenuOption("kontakty");
             this.headerView.setSignedIn(true);
             this.headerView.setMenu(loggedMenu);
             this.homeView.render();
         },
         historia: function () {
-            this.homeView = new HomeView();
+            this.homeView = new HistoriaView();
             this.markMenuOption("historia");
             this.headerView.setSignedIn(true);
             this.headerView.setMenu(loggedMenu);
@@ -122,18 +127,6 @@ require([
             this.$el.html(_.template(this.template));
         }
     });
-
-    var HomeView = Backbone.View.extend({
-        el: "#content",
-        template: homeTpl,
-        initialize: function () {
-
-        },
-        render: function () {
-            $(this.el).html(_.template(this.template));
-        }
-    });
-
 
     var app = new ApplicationRouter();
     Backbone.history.start();
