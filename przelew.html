@@ -1,15 +1,8 @@
-<div class="row-fluid">
-	<div class="span10">
-		<div class="hero-unit">
-			<h1>Welcome to Super Simple Backbone Starter Kit</h1>
-			<p>This is your home page. To edit, modify home.html</p>
-		  <p>
-		    <a class="btn btn-primary btn-large" href="http://github.com/azat-co/super-simple-backbone-starter-kit">
-		      Learn more
-		    </a>
-		  </p>
-		</div>
-
-
+<div data-bind="foreach: accounts">
+	<div>
+		<h3 data-bind="text: name"></h3>
+        <h4>Dostępne środki: <span data-bind="text: value"></span> zł</h4>
+		<button class="transaction" data-bind="attr: {id: id_domestic}">Przelew krajowy</button>
+		<button class="transaction" data-bind="attr: {id: id_foreign}">Przelew zagraniczny</button>
 	</div>
 </div>

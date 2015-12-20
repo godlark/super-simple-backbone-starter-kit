@@ -6,8 +6,8 @@ define([
 ], function (Backbone, template, ko) {
 
     var LoginView = Backbone.View.extend({
-        template: template,
         el: "#content",
+        template: _.template(template),
         events: {
             "submit #login-form": "checkLogin"
         },
@@ -28,7 +28,7 @@ define([
             this.viewModel.loginError = ko.observable("");
         },
         render: function () {
-            $(this.el).html(_.template(this.template));
+            $(this.el).html(this.template());
             ko.applyBindings(this.viewModel, this.el);
             $("#login-form").validator();
         }

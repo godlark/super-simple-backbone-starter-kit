@@ -15,3 +15,11 @@
 {
     display: none;
 }
+
+form .row {
+    margin-bottom: 8px;
+}
+
+form input {
+    margin-bottom: 4px;
+}

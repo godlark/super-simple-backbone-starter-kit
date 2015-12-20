@@ -31,3 +31,6 @@
         <!-- /ko -->
     </div>
 </nav>
+<ol class="breadcrumb" data-bind="foreach: currentPlace">
+    <li data-bind="attr: {class: _class}"><a data-bind="attr: {href: url}, text: label"></a></li>
+</ol>

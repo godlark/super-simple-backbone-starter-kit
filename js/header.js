@@ -6,11 +6,12 @@ define([
 
     var HeaderView = Backbone.View.extend({
         el: "#header",
-        template: template,
+        template: _.template(template),
 
         initialize: function () {
             this.viewModel = {};
             this.viewModel.options = ko.observable();
+            this.viewModel.currentPlace = ko.observable();
             this.viewModel.signedId = ko.observable(false);
         },
 
@@ -18,12 +19,16 @@ define([
             this.viewModel.options(options);
         },
 
+        setCurrentPlace: function(currentPlace) {
+            this.viewModel.currentPlace(currentPlace);
+        },
+
         setSignedIn: function(signedIn) {
             this.viewModel.signedId(signedIn);
         },
 
         render: function () {
-            $(this.el).html(_.template(this.template));
+            $(this.el).html(this.template());
             ko.applyBindings(this.viewModel, this.el);
         }
     });

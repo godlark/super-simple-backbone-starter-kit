@@ -6,12 +6,12 @@ define([
 
     var KontaktyView = Backbone.View.extend({
         el: "#content",
-        template: template,
+        template: _.template(template),
         initialize: function () {
 
         },
         render: function () {
-            $(this.el).html(_.template(this.template));
+            $(this.el).html(this.template());
         }
     });
 
