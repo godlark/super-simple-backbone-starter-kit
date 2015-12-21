@@ -1,5 +1,5 @@
 <div>
-    <form class="form-horizontal col-sm-8" data-toggle="validator">
+    <form class="form-horizontal col-sm-8" id="make-transaction">
         <div class="form-group">
             <h4 class="text-center">Rachunek źródłowy</h4>
             <label for="fromAccount" class="col-sm-2 control-label">Z:</label>
@@ -9,48 +9,54 @@
                 </select>
             </div>
         </div>
-        <div class="form-group">
+        <div>
             <h4 class="text-center">Dane odbiorcy:</h4>
-            <div class="row">
+            <div class="row form-group">
                 <label for="toAccountNumber" class="col-sm-2 control-label">Numer konta:</label>
                 <div class="col-sm-6">
-                    <input id="toAccountNumber" class="form-control" type="text" required/>
+                    <input id="toAccountNumber" class="form-control" type="text" minlength="16" required data-accountnumber=""/>
                 </div>
+                <div class="help-block with-errors"></div>
             </div>
-            <div class="row">
+            <div class="row form-group">
                 <label for="toAccountName" class="col-sm-2 control-label">Nazwa:</label>
                 <div class="col-sm-6">
-                    <input id="toAccountName" class="form-control" type="text" required/>
+                    <input id="toAccountName" class="form-control" type="text" minlength="3" required/>
                     <input id="toAccountName2" class="form-control" type="text"/>
                 </div>
+                <div class="help-block with-errors"></div>
             </div>
-            <div class="row">
+            <div class="row form-group">
                 <label for="toAccountAddress" class="col-sm-2 control-label">Adres:</label>
                 <div class="col-sm-6">
                     <input id="toAccountAddress" class="form-control" type="text"/>
                     <input id="toAccountAddress2" class="form-control" type="text"/>
                 </div>
+                <div class="help-block with-errors"></div>
             </div>
         </div>
-        <div class="form-group">
+        <div>
             <h4 class="text-center">Dane przelewu:</h4>
-            <div class="row">
+            <div class="row form-group">
                 <label for="title" class="col-sm-2 control-label">Tytuł:</label>
                 <div class="col-sm-6">
-                    <input id="title" class="form-control" type="text" required/>
+                    <input id="title" class="form-control" type="text" required data-native-error="Wprowadź tytuł przelewu"/>
                 </div>
+                <div class="help-block with-errors"></div>
             </div>
-            <div class="row">
+            <div class="row form-group">
                 <label for="value" class="col-sm-2 control-label">Kwota:</label>
                 <div class="col-sm-4">
-                    <input id="value" class="form-control" type="text" required/>
+                    <input id="value" class="form-control" type="number" step="0.01" data-native-error="Wprowadź kwotę na jaką wykonać przelew" required/>
                 </div>
+                <div class="help-block with-errors"></div>
             </div>
-            <div class="row">
+            <div class="row form-group">
                 <label for="data" class="col-sm-2 control-label">Data:</label>
                 <div class="col-sm-4">
-                    <input id="data" class="form-control" type="text" required/>
+                    <input id="data" class="form-control" type="date" data-native-error="Wprowadź datę przelewu" required data-datefuture=""/>
                 </div>
+                <div class="help-block with-errors"></div>
             </div>
         </div>
         <div class="col-sm-3 col-sm-push-5">

@@ -7,7 +7,8 @@ require.config({
 		backbone: 'libs/backbone/backbone-min',
 		bootstrap: 'libs/bootstrap/bootstrap.min',
 		knockout: 'libs/knockout/knockout-3.4.0',
-		q: 'libs/q/q'
+		q: 'libs/q/q',
+		date: 'libs/date'
 	},
 	shim: {
 		'validator': ['jquery'],
