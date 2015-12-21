@@ -39,6 +39,8 @@ define([
 			}
 		},
 		render: function () {
+			var that = this;
+
 			$(this.el).html(this.template());
 			ko.cleanNode(this.el);
 			ko.applyBindings(this.viewModel, this.el);
@@ -51,11 +53,16 @@ define([
 					datefuture: function(el) {
 						var date = Date.parse(el.val());
 						return date != null && date.compareTo(Date.parse('today')) >= 0;
+					},
+					moneyavailable: function(el) {
+						var account = _.findWhere(that.viewModel.accounts, {id: parseInt($("#fromAccount").val())});
+						return account.value >= el.val();
 					}
 				},
 				errors: {
 					accountnumber: "Nieprawidłowy numer konta bankowego",
-					datefuture: "Wybierz datę w przyszłości"
+					datefuture: "Wybierz datę w przyszłości",
+					moneyavailable: "Niewystarczająca ilość środków na koncie",
 				}
 			})
 		}
