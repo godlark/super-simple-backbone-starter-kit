@@ -50,7 +50,7 @@ define([
 					},
 					datefuture: function(el) {
 						var date = Date.parse(el.val());
-						return date != null && date.compareTo(Date.parse('today')) < 0;
+						return date != null && date.compareTo(Date.parse('today')) >= 0;
 					}
 				},
 				errors: {
