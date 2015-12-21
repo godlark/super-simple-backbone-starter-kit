@@ -1,7 +1,7 @@
 require.config({
 	paths: {
 		text: 'libs/require/text',
-		jquery: 'libs/jquery/jquery-1.11.1.min',
+		jquery: 'libs/jquery/jquery-2.1.4.min',
 		validator: 'libs/validator',
 		underscore: 'libs/underscore/underscore-min',
 		backbone: 'libs/backbone/backbone-min',
