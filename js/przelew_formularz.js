@@ -26,17 +26,18 @@ define([
 		el: "#content",
 		template: _.template(template),
 		initialize: function (globalData, sessionData) {
-			this.viewModel = {
-				"accounts": globalData.accounts
-			};
-
 			this.sessionData = sessionData;
 
-			for (var i = 0; i < globalData.accounts.length; i++) {
-				this.viewModel.accounts[i] = globalData.accounts[i];
-				this.viewModel.accounts[i].description = globalData.accounts[i].name + ", dostępne: "
-					+ globalData.accounts[i].value + " zł; numer: " + globalData.accounts[i].number;
-			}
+			this.viewModel = {};
+			this.viewModel.accounts = _.map(globalData.accounts, function(account) {
+				return account.id;
+			});
+			this.viewModel.accountDescription = function(accountNo) {
+				console.log(accountNo);
+				var account = _.findWhere(globalData.accounts, {id: accountNo});
+				return account.name + ", dostępne: " + account.value + " zł; numer: " + account.number;
+			};
+			this.viewModel.default_account_id = this.sessionData.transaction_from_id;
 		},
 		render: function () {
 			var that = this;

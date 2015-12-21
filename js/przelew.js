@@ -13,7 +13,7 @@ define([
 		el: "#content",
 		template: _.template(template),
 		events: {
-			"click button": "makeTransaction"
+			"click .transaction-domestic": "makeDomesticTransaction"
 		},
 		initialize: function (globalData, sessionData) {
 			this.viewModel = {
@@ -24,8 +24,6 @@ define([
 
 			for (var i = 0; i < globalData.accounts.length; i++) {
 				this.viewModel.accounts[i] = globalData.accounts[i];
-				this.viewModel.accounts[i].id_domestic = globalData.accounts[i].id + "_domestic";
-				this.viewModel.accounts[i].id_foreign = globalData.accounts[i].id + "_foreign";
 				this.viewModel.accounts[i].valueString = toMoneyFormat(globalData.accounts[i].value);
 			}
 		},
@@ -35,8 +33,8 @@ define([
 			ko.applyBindings(this.viewModel, this.el);
 			this.delegateEvents();
 		},
-		makeTransaction: function (e) {
-			this.sessionData.transaction_from_id = e.target.id;
+		makeDomesticTransaction: function (e) {
+			this.sessionData.transaction_from_id = $(e.target).data("account-id");
 			Backbone.history.navigate("przelew_formularz", {trigger: true});
 		}
 	});
