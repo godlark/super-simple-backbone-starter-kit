@@ -5,6 +5,10 @@ define([
 	'knockout'
 ], function (_, Backbone, template, ko) {
 
+	function toMoneyFormat(value) {
+		return value.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,') + " zł";
+	}
+
 	var PrzelewView = Backbone.View.extend({
 		el: "#content",
 		template: _.template(template),
@@ -22,6 +26,7 @@ define([
 				this.viewModel.accounts[i] = globalData.accounts[i];
 				this.viewModel.accounts[i].id_domestic = globalData.accounts[i].id + "_domestic";
 				this.viewModel.accounts[i].id_foreign = globalData.accounts[i].id + "_foreign";
+				this.viewModel.accounts[i].valueString = toMoneyFormat(globalData.accounts[i].value);
 			}
 		},
 		render: function () {

@@ -1,8 +1,11 @@
 <div data-bind="foreach: accounts">
 	<div>
 		<h3 data-bind="text: name"></h3>
-        <h4>Dostępne środki: <span data-bind="text: value"></span> zł</h4>
-		<button type="button" class="transaction btn btn-default" data-bind="attr: {id: id_domestic}">Przelew krajowy</button>
-		<button type="button" class="transaction btn btn-default" data-bind="attr: {id: id_foreign}">Przelew zagraniczny</button>
+		<h4>Dostępne środki: <span class="text-success" data-bind="text: valueString"></span></h4>
+		<button type="button" class="transaction btn btn-default" data-bind="attr: {id: id_domestic}">Przelew krajowy
+		</button>
+		<button type="button" class="transaction btn btn-default" data-bind="attr: {id: id_foreign}">Przelew
+			zagraniczny
+		</button>
 	</div>
 </div>
