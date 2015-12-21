@@ -10,11 +10,14 @@ require.config({
         q: 'libs/q/q'
     },
     shim: {
-        'validator': ['jquery']
+        'validator': ['jquery'],
+        'bootstrap': ['jquery']
     }
 });
 
 require([
+    'bootstrap',
+    'underscore',
     'backbone',
     'text!header.html',
     'text!footer.html',
@@ -28,16 +31,21 @@ require([
     'js/data',
     'js/przelew_formularz',
     'knockout'
-], function (Backbone, headerTpl, footerTpl, LoginView, HeaderView, HistoriaView, KontaktyView,
+], function (Bootstrap, _, Backbone, headerTpl, footerTpl, LoginView, HeaderView, HistoriaView, KontaktyView,
              PrzelewView, RachunkiView, StartView, GlobalData, PrzelewFormularzView, ko) {
 
-    var loggedMenu = [
-        {"_class": ko.observable(), "url": "#start", "label": "Start"},
-        {"_class": ko.observable(), "url": "#przelew", "label": "Zrób przelew"},
-        {"_class": ko.observable(), "url": "#rachunki", "label": "Rachunki"},
-        {"_class": ko.observable(), "url": "#historia", "label": "Historia transakcji"},
-        {"_class": ko.observable(), "url": "#kontakty", "label": "Lista kontaktów"}
+    var options = [
+        {"url": "#start", "label": "Start", "level": 1},
+        {"url": "#przelew", "label": "Zrób przelew", "level": 1},
+        {"url": "#rachunki", "label": "Rachunki", "level": 1},
+        {"url": "#historia", "label": "Historia transakcji", "level": 1},
+        {"url": "#kontakty", "label": "Lista kontaktów", "level": 1},
+        {"url": "#przelew_formularz", "label": "Formularz przelewu", "level": 2}
     ];
+
+    var loggedMenu = _.map(_.where(options, {"level": 1}), function(option) {
+        return _.extend(option, {"_class": ko.observable("")});
+    });
     var unloggedMenu = [{"_class": "active", "url": "#", "label": "Logowanie"}];
 
     var sessionData = {};
