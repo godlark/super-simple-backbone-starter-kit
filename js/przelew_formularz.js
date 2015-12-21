@@ -2,7 +2,8 @@ define([
 	'underscore',
 	'backbone',
 	'text!przelew_formularz.html',
-	'knockout'
+	'knockout',
+	'validator'
 ], function (_, Backbone, template, ko) {
 
 	var PrzelewFormularzView = Backbone.View.extend({

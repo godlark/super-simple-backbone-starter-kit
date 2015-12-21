@@ -1,5 +1,5 @@
 <div>
-    <form class="form-horizontal col-sm-8">
+    <form class="form-horizontal col-sm-8" data-toggle="validator">
         <div class="form-group">
             <h4 class="text-center">Rachunek źródłowy</h4>
             <label for="fromAccount" class="col-sm-2 control-label">Z:</label>
@@ -14,13 +14,13 @@
             <div class="row">
                 <label for="toAccountNumber" class="col-sm-2 control-label">Numer konta:</label>
                 <div class="col-sm-6">
-                    <input id="toAccountNumber" class="form-control" type="text"/>
+                    <input id="toAccountNumber" class="form-control" type="text" required/>
                 </div>
             </div>
             <div class="row">
                 <label for="toAccountName" class="col-sm-2 control-label">Nazwa:</label>
                 <div class="col-sm-6">
-                    <input id="toAccountName" class="form-control" type="text"/>
+                    <input id="toAccountName" class="form-control" type="text" required/>
                     <input id="toAccountName2" class="form-control" type="text"/>
                 </div>
             </div>
@@ -37,19 +37,19 @@
             <div class="row">
                 <label for="title" class="col-sm-2 control-label">Tytuł:</label>
                 <div class="col-sm-6">
-                    <input id="title" class="form-control" type="text"/>
+                    <input id="title" class="form-control" type="text" required/>
                 </div>
             </div>
             <div class="row">
                 <label for="value" class="col-sm-2 control-label">Kwota:</label>
                 <div class="col-sm-4">
-                    <input id="value" class="form-control" type="text"/>
+                    <input id="value" class="form-control" type="text" required/>
                 </div>
             </div>
             <div class="row">
                 <label for="data" class="col-sm-2 control-label">Data:</label>
                 <div class="col-sm-4">
-                    <input id="data" class="form-control" type="text"/>
+                    <input id="data" class="form-control" type="text" required/>
                 </div>
             </div>
         </div>
