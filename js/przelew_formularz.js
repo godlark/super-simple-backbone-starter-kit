@@ -1,8 +1,9 @@
 define([
+'underscore',
 'backbone',
 'text!przelew_formularz.html',
 'knockout'
-], function (Backbone, template, ko) {
+], function (_, Backbone, template, ko) {
 
     var PrzelewFormularzView = Backbone.View.extend({
         el: "#content",

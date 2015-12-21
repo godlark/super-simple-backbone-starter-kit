@@ -1,8 +1,9 @@
 define([
+'underscore',
 'backbone',
 'text!header.html',
 'knockout'
-], function (Backbone, template, ko) {
+], function (_, Backbone, template, ko) {
 
     var HeaderView = Backbone.View.extend({
         el: "#header",

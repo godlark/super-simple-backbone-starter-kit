@@ -1,9 +1,10 @@
 define([
+'underscore',
 'backbone',
 'text!login.html',
 'knockout',
 'validator'
-], function (Backbone, template, ko) {
+], function (_, Backbone, template, ko) {
 
     var LoginView = Backbone.View.extend({
         el: "#content",

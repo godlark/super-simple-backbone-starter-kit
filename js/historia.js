@@ -1,8 +1,9 @@
 define([
+'underscore',
 'backbone',
 'text!historia.html',
 'knockout'
-], function (Backbone, template, ko) {
+], function (underscore, Backbone, template, ko) {
 
     var HistoriaView = Backbone.View.extend({
         el: "#content",

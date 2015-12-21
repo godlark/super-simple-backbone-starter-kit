@@ -1,8 +1,9 @@
 define([
+'underscore',
 'backbone',
 'text!przelew.html',
 'knockout'
-], function (Backbone, template, ko) {
+], function (_, Backbone, template, ko) {
 
     var PrzelewView = Backbone.View.extend({
         el: "#content",

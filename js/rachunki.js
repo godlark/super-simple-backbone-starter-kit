@@ -1,8 +1,9 @@
 define([
+'underscore',
 'backbone',
 'text!rachunki.html',
 'knockout'
-], function (Backbone, template, ko) {
+], function (_, Backbone, template, ko) {
 
     var RachunkiView = Backbone.View.extend({
         el: "#content",

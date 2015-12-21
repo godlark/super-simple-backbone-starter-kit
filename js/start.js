@@ -1,8 +1,9 @@
 define([
+'underscore',
 'backbone',
 'text!start.html',
 'knockout'
-], function (Backbone, template, ko) {
+], function (_, Backbone, template, ko) {
 
     var StartView = Backbone.View.extend({
         el: "#content",

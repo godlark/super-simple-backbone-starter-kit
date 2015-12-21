@@ -1,8 +1,9 @@
 define([
+'underscore',
 'backbone',
 'text!kontakty.html',
 'knockout'
-], function (Backbone, template, ko) {
+], function (_, Backbone, template, ko) {
 
     var KontaktyView = Backbone.View.extend({
         el: "#content",
