@@ -1,7 +1,7 @@
 define([
 	'underscore',
 	'backbone',
-	'text!przelew_formularz.html',
+	'text!przelew_krajowy_formularz.html',
 	'knockout',
 	'validator',
 	'date',

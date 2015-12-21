@@ -144,6 +144,7 @@
       if (($el.data(key) !== undefined || key == 'native') && !validator.call(this, $el)) {
         var error = getErrorMessage(key)
         !~errors.indexOf(error) && errors.push(error)
+        return false;
       }
     }, this))
 

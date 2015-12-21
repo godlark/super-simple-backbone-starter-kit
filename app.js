@@ -30,7 +30,7 @@ require([
 	'js/rachunki',
 	'js/start',
 	'js/data',
-	'js/przelew_formularz',
+	'js/przelew_krajowy_formularz',
 	'knockout'
 ], function (Bootstrap, _, Backbone, headerTpl, footerTpl, LoginView, HeaderView, HistoriaView, KontaktyView,
              PrzelewView, RachunkiView, StartView, GlobalData, PrzelewFormularzView, ko) {
