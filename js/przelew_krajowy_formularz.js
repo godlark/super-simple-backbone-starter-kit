@@ -25,7 +25,12 @@ define([
 	var PrzelewFormularzView = Backbone.View.extend({
 		el: "#content",
 		template: _.template(template),
+		events: {
+			"submit #make-transaction": "makeTransaction"
+		},
+
 		initialize: function (globalData, sessionData) {
+			this.globalData = globalData;
 			this.sessionData = sessionData;
 
 			this.viewModel = {};
@@ -56,7 +61,7 @@ define([
 						return date != null && date.compareTo(Date.parse('today')) >= 0;
 					},
 					moneyavailable: function(el) {
-						var account = _.findWhere(that.viewModel.accounts, {id: parseInt($("#fromAccount").val())});
+						var account = _.findWhere(that.globalData.accounts, {id: parseInt($("#fromAccount").val())});
 						return account.value >= el.val();
 					}
 				},
@@ -65,7 +70,28 @@ define([
 					datefuture: "Wybierz datę w przyszłości",
 					moneyavailable: "Niewystarczająca ilość środków na koncie",
 				}
-			})
+			});
+			this.delegateEvents();
+		},
+		makeTransaction: function(e) {
+			e.preventDefault();
+
+			var index = _.findIndex(this.globalData.accounts, {id: parseInt($("#fromAccount").val())});
+			var title = $("#title").val();
+			var toAccountNumber = $("#toAccountNumber").val();
+			var toAccountName = $("#toAccountName").val() + $("#toAccountName2").val();
+			var toAccountAddress = $("#toAccountAddress").val() + $("#toAccountAddress2").val();
+			var date = $("#date").val();
+			var value = $("#value").val();
+			this.globalData.accounts[index].transactions_to.push({
+				"title": title,
+				"value": value,
+				"to_name": toAccountName,
+				"to_address": toAccountAddress,
+				"to_number": toAccountNumber,
+				"date": date
+			});
+			Backbone.history.navigate("start", {trigger: true});
 		}
 	});
 

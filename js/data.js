@@ -2,6 +2,8 @@ define([
 	'knockout'
 ], function (ko) {
 
+	var nr = "89 2490 1044 0000 4200 4974 5654";
+
 	var globalData =
 	{
 		"accounts": [
@@ -13,9 +15,9 @@ define([
 					{
 						"title": "Początkowa wpłata",
 						"value": 500.0,
-						"from_name": "Joanna Struga-Okoń",
-						"from_address": "Warszawa 00-000, ul. Tysiąclecia 2",
-						"from_number": 891000342234221123
+						"to_name": "Joanna Struga-Okoń",
+						"to_address": "Warszawa 00-000, ul. Tysiąclecia 2",
+						"to_number": 891000342234221123
 					}
 				],
 				"transactions_from": [
