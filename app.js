@@ -47,6 +47,7 @@ require([
         return _.extend(option, {"_class": ko.observable("")});
     });
     var unloggedMenu = [{"_class": "active", "url": "#", "label": "Logowanie"}];
+    var currentPlace = [];
 
     var sessionData = {};
 
@@ -67,70 +68,67 @@ require([
             this.footerView.render();
         },
         markMenuOption: function (name) {
-            for (var i = 0; i < loggedMenu.length; i++) {
-                if (loggedMenu[i].url == "#" + name) {
-                    loggedMenu[i]._class("active");
-                } else {
-                    loggedMenu[i]._class("");
-                }
+            var foundIndex = _.findIndex(options, function(option) {
+               return option.url == "#" + name;
+            });
+            if (foundIndex == -1) {
+                throw "Exception";
             }
+
+            var level = options[foundIndex].level;
+            currentPlace.splice(level-1, currentPlace.length, _.extend(options[foundIndex]));
+            if (level == 1) {
+                loggedMenu.forEach(function(val, i, arr) {
+                    if (arr[i].url == "#" + name) {
+                        arr[i]._class("active");
+                    } else {
+                        arr[i]._class("");
+                    }
+                });
+            }
+            this.headerView.setCurrentPlace(currentPlace);
         },
         start: function () {
             this.markMenuOption("start");
             this.signedInCommon();
-            this.setCurrentPlace([{"label": "Start", "url": "#start"}]);
             this.homeView = new StartView();
             this.homeView.render();
         },
         przelew: function () {
             this.markMenuOption("przelew");
             this.signedInCommon();
-            this.setCurrentPlace([{"label": "Zrób przelew", "url": "#przelew"}]);
             this.homeView = new PrzelewView(GlobalData, sessionData);
             this.homeView.render();
         },
         rachunki: function () {
             this.markMenuOption("rachunki");
             this.signedInCommon();
-            this.setCurrentPlace([{"label": "Rachunki", "url": "#rachunki"}]);
             this.homeView = new RachunkiView();
             this.homeView.render();
         },
         kontakty: function () {
             this.markMenuOption("kontakty");
             this.signedInCommon();
-            this.setCurrentPlace([{"label": "Kontakty", "url": "#kontakty"}]);
             this.homeView = new KontaktyView();
             this.homeView.render();
         },
         historia: function () {
             this.markMenuOption("historia");
             this.signedInCommon();
-            this.setCurrentPlace([{"label": "Historia transakcji", "url": "#historia"}]);
             this.homeView = new HistoriaView();
             this.homeView.render();
         },
         przelew_formularz: function() {
             this.markMenuOption("przelew_formularz");
             this.signedInCommon();
-            this.setCurrentPlace([
-                {"label": "Zrób przelew", "url": "#przelew"},
-                {"label": "Formularz przelewu", "url": "#przelew_formularz"}
-            ]);
             this.homeView = new PrzelewFormularzView(GlobalData, sessionData);
             this.homeView.render();
         },
         signedInCommon: function () {
             this.headerView.setSignedIn(true);
             this.headerView.setMenu(loggedMenu);
+            this.headerView.setCurrentPlace(currentPlace);
             this.countAvailableSum();
-        },
-        setCurrentPlace: function(currentPlace) {
-            for(var i = 0; i < currentPlace.length-1; i++) {
-                currentPlace[i]._class = "";
-            }
-            currentPlace[currentPlace.length-1]._class = "active";
-            this.headerView.setCurrentPlace(currentPlace)
         },
         countAvailableSum: function() {
             for(var i = 0; i < GlobalData.accounts.length; i++) {
