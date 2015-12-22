@@ -12,18 +12,15 @@ define([
 	var PrzelewView = Backbone.View.extend({
 		el: "#content",
 		template: _.template(template),
-		initialize: function (globalData, sessionData) {
+		initialize: function (globalData) {
 			this.viewModel = {
 				"accounts": globalData.accounts
 			};
-
-			this.sessionData = sessionData;
 
 			for (var i = 0; i < globalData.accounts.length; i++) {
 				this.viewModel.accounts[i] = globalData.accounts[i];
 				this.viewModel.accounts[i].valueString = toMoneyFormat(globalData.accounts[i].value);
 			}
-			console.log(this.viewModel);
 		},
 		render: function () {
 			$(this.el).html(this.template());

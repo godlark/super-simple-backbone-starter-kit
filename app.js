@@ -62,7 +62,7 @@ require([
 			"start": "start",
 			"przelew": "przelew",
 			"rachunki": "rachunki",
-			"historia": "historia",
+			"historia(/*accounts_ids)": "historia",
 			"kontakty": "kontakty",
 			"przelew_formularz(/:account_id)": "przelew_formularz",
 		},
@@ -93,7 +93,7 @@ require([
 		rachunki: function () {
 			this.markMenuOption("rachunki");
 			this.signedInCommon();
-			this.homeView = new RachunkiView();
+			this.homeView = new RachunkiView(GlobalData);
 			this.homeView.render();
 		},
 		kontakty: function () {
@@ -102,10 +102,15 @@ require([
 			this.homeView = new KontaktyView();
 			this.homeView.render();
 		},
-		historia: function () {
+		historia: function (accounts_ids) {
+			if (accounts_ids == null) {
+				accounts_ids = "";
+			}
 			this.markMenuOption("historia");
 			this.signedInCommon();
-			this.homeView = new HistoriaView();
+			this.homeView = new HistoriaView(GlobalData, accounts_ids.split("/").filter(function(v){
+				return v !== '';
+			}));
 			this.homeView.render();
 		},
 		przelew_formularz: function (account_id) {
