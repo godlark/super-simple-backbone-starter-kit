@@ -50,7 +50,18 @@ require([
 	var unloggedMenu = [{"_class": "active", "url": "#", "label": "Logowanie"}];
 	var currentPlace = [];
 
-	var sessionData = {};
+	var notif = ko.observableArray([{text: "dupa"}, {text: "Do dupy"}]);
+
+	var sessionData = {
+		notifications: {
+			addSuccess: function(text) {
+				notif.push({type: "success", text: text});
+				setTimeout(function() {
+					notif.shift(1);
+				}, 10 * 1000);
+			}
+		}
+	};
 
 	var ApplicationRouter = Backbone.Router.extend({
 		routes: {
@@ -63,7 +74,7 @@ require([
 			"przelew_formularz": "przelew_formularz",
 		},
 		initialize: function () {
-			this.headerView = new HeaderView();
+			this.headerView = new HeaderView(notif);
 			this.headerView.render();
 			this.footerView = new FooterView();
 			this.footerView.render();

@@ -91,6 +91,7 @@ define([
 				"to_number": toAccountNumber,
 				"date": date
 			});
+			this.sessionData.notifications.addSuccess("Przelew został przekazany do realizacji");
 			Backbone.history.navigate("start", {trigger: true});
 		}
 	});

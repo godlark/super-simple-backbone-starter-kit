@@ -9,8 +9,9 @@ define([
 		el: "#header",
 		template: _.template(template),
 
-		initialize: function () {
+		initialize: function (notifications) {
 			this.viewModel = {};
+			this.viewModel.notifications = notifications;
 			this.viewModel.options = ko.observable();
 			this.viewModel.currentPlace = ko.observable();
 			this.viewModel.signedId = ko.observable(false);

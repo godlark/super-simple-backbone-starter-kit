@@ -23,3 +23,16 @@ form .row {
 form input {
     margin-bottom: 4px;
 }
+
+.notifications h4 {
+    padding: 8px;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.notifications {
+    position: absolute;
+    z-index: 10;
+    margin-left: -30px;
+    top: 62px;
+}
