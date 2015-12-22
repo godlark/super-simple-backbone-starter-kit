@@ -29,9 +29,8 @@ define([
 			"submit #make-transaction": "makeTransaction"
 		},
 
-		initialize: function (globalData, sessionData, notifications) {
+		initialize: function (globalData, defaultAccountId, notifications) {
 			this.globalData = globalData;
-			this.sessionData = sessionData;
 			this.notifications = notifications;
 
 			this.viewModel = {};
@@ -43,7 +42,7 @@ define([
 				var account = _.findWhere(globalData.accounts, {id: accountNo});
 				return account.name + ", dostępne: " + account.value + " zł; numer: " + account.number;
 			};
-			this.viewModel.default_account_id = this.sessionData.transaction_from_id;
+			this.viewModel.default_account_id = defaultAccountId;
 		},
 		render: function () {
 			var that = this;

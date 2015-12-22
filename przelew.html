@@ -2,11 +2,11 @@
 	<div>
 		<h3 data-bind="text: name"></h3>
 		<h4>Dostępne środki: <span class="text-success" data-bind="text: valueString"></span></h4>
-		<button type="button" class="transaction-domestic btn btn-default" data-bind="attr: {'data-account-id': id}">
+		<a class="btn btn-default" data-bind="attr: {'href': '#przelew_formularz/' + id}">
 			Przelew krajowy
-		</button>
-		<button type="button" class="transaction-foreign btn btn-default" data-bind="attr: {'data-account-id': id}">
+		</a>
+		<a class="btn btn-default" data-bind="attr: {'href': '#przelew_formularz/' + id}">
 			Przelew zagraniczny
-		</button>
+		</a>
 	</div>
 </div>

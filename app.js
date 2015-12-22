@@ -64,7 +64,7 @@ require([
 			"rachunki": "rachunki",
 			"historia": "historia",
 			"kontakty": "kontakty",
-			"przelew_formularz": "przelew_formularz",
+			"przelew_formularz(/:account_id)": "przelew_formularz",
 		},
 		initialize: function () {
 			this.headerView = new HeaderView();
@@ -72,26 +72,11 @@ require([
 			this.footerView = new FooterView();
 			this.footerView.render();
 		},
-		markMenuOption: function (name) {
-			var foundIndex = _.findIndex(options, function (option) {
-				return option.url == "#" + name;
-			});
-			if (foundIndex == -1) {
-				throw "Exception";
-			}
-
-			var level = options[foundIndex].level;
-			currentPlace.splice(level - 1, currentPlace.length, _.extend(options[foundIndex]));
-			if (level == 1) {
-				loggedMenu.forEach(function (val, i, arr) {
-					if (arr[i].url == "#" + name) {
-						arr[i]._class("active");
-					} else {
-						arr[i]._class("");
-					}
-				});
-			}
-			this.headerView.setCurrentPlace(currentPlace);
+		login: function () {
+			this.loginView = new LoginView(this.headerView.getNotificationsArea());
+			this.headerView.setSignedIn(false);
+			this.headerView.setMenu(unloggedMenu);
+			this.loginView.render();
 		},
 		start: function () {
 			this.markMenuOption("start");
@@ -123,10 +108,10 @@ require([
 			this.homeView = new HistoriaView();
 			this.homeView.render();
 		},
-		przelew_formularz: function () {
+		przelew_formularz: function (account_id) {
 			this.markMenuOption("przelew_formularz");
 			this.signedInCommon();
-			this.homeView = new PrzelewFormularzView(GlobalData, sessionData, this.headerView.getNotificationsArea());
+			this.homeView = new PrzelewFormularzView(GlobalData, account_id, this.headerView.getNotificationsArea());
 			this.homeView.render();
 		},
 		signedInCommon: function () {
@@ -134,6 +119,27 @@ require([
 			this.headerView.setMenu(loggedMenu);
 			this.headerView.setCurrentPlace(currentPlace);
 			this.countAvailableSum();
+		},
+		markMenuOption: function (name) {
+			var foundIndex = _.findIndex(options, function (option) {
+				return option.url == "#" + name;
+			});
+			if (foundIndex == -1) {
+				throw "Exception";
+			}
+
+			var level = options[foundIndex].level;
+			currentPlace.splice(level - 1, currentPlace.length, _.extend(options[foundIndex]));
+			if (level == 1) {
+				loggedMenu.forEach(function (val, i, arr) {
+					if (arr[i].url == "#" + name) {
+						arr[i]._class("active");
+					} else {
+						arr[i]._class("");
+					}
+				});
+			}
+			this.headerView.setCurrentPlace(currentPlace);
 		},
 		countAvailableSum: function () {
 			for (var i = 0; i < GlobalData.accounts.length; i++) {
@@ -146,12 +152,6 @@ require([
 				}
 				GlobalData.accounts[i].value = sum;
 			}
-		},
-		login: function () {
-			this.loginView = new LoginView();
-			this.headerView.setSignedIn(false);
-			this.headerView.setMenu(unloggedMenu);
-			this.loginView.render();
 		}
 	});
 

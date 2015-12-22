@@ -13,10 +13,16 @@ define([
 			"submit #login-form": "checkLogin"
 		},
 
+		initialize: function (notifications) {
+			this.notifications = notifications;
+			this.viewModel = {};
+			this.viewModel.loginError = ko.observable("");
+		},
+
 		checkLogin: function (e) {
 			e.preventDefault();
 			if ($("#username").val() == "kotek.marsjanin.29" && $("#password").val() == "alamakota") {
-				//TODO: Komunikat o poprawnym zalogowaniu
+				this.notifications.success("Sukces", "Zalogowałeś się");
 				Backbone.history.navigate("start", {trigger: true});
 			}
 			else {
@@ -24,10 +30,6 @@ define([
 			}
 		},
 
-		initialize: function () {
-			this.viewModel = {};
-			this.viewModel.loginError = ko.observable("");
-		},
 		render: function () {
 			$(this.el).html(this.template());
 			ko.applyBindings(this.viewModel, this.el);
