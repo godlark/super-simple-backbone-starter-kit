@@ -30,22 +30,18 @@ require([
 	'js/header',
 	'js/historia',
 	'js/kontakty',
-	'js/przelew',
 	'js/rachunki',
-	'js/start',
 	'js/data',
 	'js/przelew_krajowy_formularz',
 	'knockout'
 ], function (Bootstrap, _, Backbone, headerTpl, footerTpl, LoginView, HeaderView, HistoriaView, KontaktyView,
-             PrzelewView, RachunkiView, StartView, GlobalData, PrzelewFormularzView, ko) {
+             RachunkiView, GlobalData, PrzelewFormularzView, ko) {
 
 	var options = [
-		{"url": "#start", "label": "Start", "level": 1},
-		{"url": "#przelew", "label": "Zrób przelew", "level": 1},
+		{"url": "#przelew_formularz", "label": "Zrób przelew", "level": 1},
 		{"url": "#rachunki", "label": "Rachunki", "level": 1},
 		{"url": "#historia", "label": "Historia transakcji", "level": 1},
 		{"url": "#kontakty", "label": "Lista kontaktów", "level": 1},
-		{"url": "#przelew_formularz", "label": "Formularz przelewu", "level": 2}
 	];
 
 	var loggedMenu = _.map(_.where(options, {"level": 1}), function (option) {
@@ -60,7 +56,6 @@ require([
 		routes: {
 			"": "login",
 			"start": "start",
-			"przelew": "przelew",
 			"rachunki": "rachunki",
 			"historia(/*accounts_ids)": "historia",
 			"kontakty": "kontakty",
@@ -77,18 +72,6 @@ require([
 			this.headerView.setSignedIn(false);
 			this.headerView.setMenu(unloggedMenu);
 			this.loginView.render();
-		},
-		start: function () {
-			this.markMenuOption("start");
-			this.signedInCommon();
-			this.homeView = new StartView();
-			this.homeView.render();
-		},
-		przelew: function () {
-			this.markMenuOption("przelew");
-			this.signedInCommon();
-			this.homeView = new PrzelewView(GlobalData, sessionData);
-			this.homeView.render();
 		},
 		rachunki: function () {
 			this.markMenuOption("rachunki");
@@ -108,8 +91,10 @@ require([
 			}
 			this.markMenuOption("historia");
 			this.signedInCommon();
-			this.homeView = new HistoriaView(GlobalData, accounts_ids.split("/").filter(function(v){
+			this.homeView = new HistoriaView(GlobalData, _.map(accounts_ids.split("/").filter(function (v) {
 				return v !== '';
+			}), function (s) {
+				return parseInt(s);
 			}));
 			this.homeView.render();
 		},

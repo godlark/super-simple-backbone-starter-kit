@@ -23,7 +23,7 @@ define([
 			e.preventDefault();
 			if ($("#username").val() == "kotek.marsjanin.29" && $("#password").val() == "alamakota") {
 				this.notifications.success("Sukces", "Zalogowałeś się");
-				Backbone.history.navigate("start", {trigger: true});
+				Backbone.history.navigate("rachunki", {trigger: true});
 			}
 			else {
 				this.viewModel.loginError("Nieprawidłowa nazwa użytkownika bądź hasło.");
