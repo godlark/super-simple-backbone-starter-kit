@@ -1,3 +1,11 @@
+<div style="margin-bottom: 12px;" class="container">
+    <h4>Pokaż/Ukryj historię z:</h4>
+
+    <div class="row" data-bind="foreach: accounts">
+        <a data-bind="text: name, attr: {'class': _class + ' btn btn-default btn-md', 'href': '#historia/' + new_ids}"></a>
+    </div>
+</div>
+
 <table class="table table-bordered">
     <thead>
     <tr>

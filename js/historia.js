@@ -9,8 +9,6 @@ define([
 		el: "#content",
 		template: _.template(template),
 		initialize: function (globalData, accountsIds) {
-			console.log(accountsIds.length);
-
 			if (accountsIds.length == 0) {
 				console.log("chuj");
 				accountsIds = _.map(globalData.accounts, function (account) {
@@ -18,12 +16,21 @@ define([
 				});
 			}
 
-			console.log(accountsIds);
-
 			this.viewModel = {
 				"accounts": globalData.accounts,
 				"transactions": []
 			};
+
+			for (var i = 0; i < this.viewModel.accounts.length; i++) {
+				if (_.contains(accountsIds, this.viewModel.accounts[i].id)) {
+					this.viewModel.accounts[i].new_ids = _.without(accountsIds, this.viewModel.accounts[i].id).join("/");
+					this.viewModel.accounts[i]._class = "active";
+				}
+				else {
+					this.viewModel.accounts[i].new_ids = [this.viewModel.accounts[i].id].concat(accountsIds).join("/");
+					this.viewModel.accounts[i]._class = "";
+				}
+			}
 
 			for (var i = 0; i < globalData.accounts.length; i++) {
 				if (_.contains(accountsIds, globalData.accounts[i].id)) {
