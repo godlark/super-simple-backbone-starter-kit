@@ -29,9 +29,10 @@ define([
 			"submit #make-transaction": "makeTransaction"
 		},
 
-		initialize: function (globalData, sessionData) {
+		initialize: function (globalData, sessionData, notifications) {
 			this.globalData = globalData;
 			this.sessionData = sessionData;
+			this.notifications = notifications;
 
 			this.viewModel = {};
 			this.viewModel.accounts = _.map(globalData.accounts, function(account) {
@@ -91,7 +92,7 @@ define([
 				"to_number": toAccountNumber,
 				"date": date
 			});
-			this.sessionData.notifications.addSuccess("Przelew został przekazany do realizacji");
+			this.notifications.success("Sukces", "Przelew został przekazany do realizacji");
 			Backbone.history.navigate("start", {trigger: true});
 		}
 	});

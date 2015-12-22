@@ -24,15 +24,94 @@ form input {
     margin-bottom: 4px;
 }
 
-.notifications h4 {
-    padding: 8px;
-    border-radius: 8px;
-    box-sizing: border-box;
+/*** NOTIFICATIONS AREA STYLES ***/
+.notifications-area:empty {
+    border: none;
 }
 
-.notifications {
-    position: absolute;
-    z-index: 10;
-    margin-left: -30px;
-    top: 62px;
+.notifications-area {
+    background: rgb(230, 230, 230);
+    box-shadow: 0 2px 2px 0 rgba(177, 177, 177, 0.98);
+    border: 1px solid rgb(177, 177, 177);
+}
+
+.ui-notify-message {
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.ui-notify-message h1 {
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.ui-notify-message p {
+    margin: 3px 0;
+    padding: 0;
+    line-height: 18px;
+    display: inline-block;
+}
+
+.ui-notify-message-style.normal h1 {
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+
+.ui-notify-message-style.alert h1 {
+    color: rgb(190, 0, 6);
+    font-weight: bold;
+}
+
+.ui-notify-message-style.okay h1 {
+    color: rgb(61, 170, 0);
+    font-weight: bold;
+}
+
+.ui-notify-message-style.warning h1 {
+    color: rgb(255, 204, 0);
+    font-weight: bold;
+}
+
+.ui-notify-message-style p {
+    color: black;
+}
+
+.ui-notify-close {
+    color: black;
+    text-decoration: underline;
+}
+
+.ui-notify-click {
+    cursor: pointer;
+}
+
+.ui-notify-cross {
+    margin-top: -4px;
+    float: right;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 0 1px 1px black;
+    padding: 2px;
+}
+
+.ui-notify-cross:hover {
+    color: rgb(102, 102, 102);
+}
+
+.ui-notify-cross:active {
+    position: relative;
+    top: 1px
+}
+
+.notifications-container {
+    top: 118px;
+    transform: translateX(-50%);
+    left: 50%;
+    width: 1140px;
+    position: fixed;
+    z-index: 999;
 }

@@ -2,16 +2,17 @@ define([
 	'underscore',
 	'backbone',
 	'text!header.html',
-	'knockout'
-], function (_, Backbone, template, ko) {
+	'knockout',
+	'js/notificationsArea',
+], function (_, Backbone, template, ko, NotificationsArea) {
 
 	var HeaderView = Backbone.View.extend({
 		el: "#header",
 		template: _.template(template),
 
-		initialize: function (notifications) {
+		initialize: function () {
+			this.notificationsArea = new NotificationsArea;
 			this.viewModel = {};
-			this.viewModel.notifications = notifications;
 			this.viewModel.options = ko.observable();
 			this.viewModel.currentPlace = ko.observable();
 			this.viewModel.signedId = ko.observable(false);
@@ -29,9 +30,14 @@ define([
 			this.viewModel.signedId(signedIn);
 		},
 
+		getNotificationsArea: function() {
+			return this.notificationsArea;
+		},
+
 		render: function () {
 			$(this.el).html(this.template());
 			ko.applyBindings(this.viewModel, this.el);
+			this.notificationsArea.render(this.$el.find('.notifications-container'));
 		}
 	});
 

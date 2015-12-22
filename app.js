@@ -2,6 +2,8 @@ require.config({
 	paths: {
 		text: 'libs/require/text',
 		jquery: 'libs/jquery/jquery-2.1.4.min',
+		jquery_ui: 'libs/jquery-ui/jquery-ui.min',
+		jquery_notify: 'libs/jquery-notify/jquery.notify',
 		validator: 'libs/validator',
 		underscore: 'libs/underscore/underscore-min',
 		backbone: 'libs/backbone/backbone-min',
@@ -12,7 +14,9 @@ require.config({
 	},
 	shim: {
 		'validator': ['jquery'],
-		'bootstrap': ['jquery']
+		'bootstrap': ['jquery'],
+		'jquery_ui': ['jquery'],
+		'jquery_notify': ['jquery_ui']
 	}
 });
 
@@ -50,18 +54,7 @@ require([
 	var unloggedMenu = [{"_class": "active", "url": "#", "label": "Logowanie"}];
 	var currentPlace = [];
 
-	var notif = ko.observableArray([{text: "dupa"}, {text: "Do dupy"}]);
-
-	var sessionData = {
-		notifications: {
-			addSuccess: function(text) {
-				notif.push({type: "success", text: text});
-				setTimeout(function() {
-					notif.shift(1);
-				}, 10 * 1000);
-			}
-		}
-	};
+	var sessionData = {};
 
 	var ApplicationRouter = Backbone.Router.extend({
 		routes: {
@@ -74,7 +67,7 @@ require([
 			"przelew_formularz": "przelew_formularz",
 		},
 		initialize: function () {
-			this.headerView = new HeaderView(notif);
+			this.headerView = new HeaderView();
 			this.headerView.render();
 			this.footerView = new FooterView();
 			this.footerView.render();
@@ -133,7 +126,7 @@ require([
 		przelew_formularz: function () {
 			this.markMenuOption("przelew_formularz");
 			this.signedInCommon();
-			this.homeView = new PrzelewFormularzView(GlobalData, sessionData);
+			this.homeView = new PrzelewFormularzView(GlobalData, sessionData, this.headerView.getNotificationsArea());
 			this.homeView.render();
 		},
 		signedInCommon: function () {
