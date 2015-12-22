@@ -68,10 +68,10 @@ require([
 			this.footerView.render();
 		},
 		login: function () {
-			this.loginView = new LoginView(this.headerView.getNotificationsArea());
 			this.headerView.setSignedIn(false);
 			this.headerView.setMenu(unloggedMenu);
-			this.loginView.render();
+			this.homeView = new LoginView(undefined, this.headerView.getNotificationsArea());
+			this.homeView.render();
 		},
 		rachunki: function () {
 			this.markMenuOption("rachunki");

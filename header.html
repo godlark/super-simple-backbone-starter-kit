@@ -31,7 +31,9 @@
         <!-- /ko -->
     </div>
 </nav>
+<!-- ko if: signedId -->
 <ol class="breadcrumb" data-bind="foreach: currentPlace">
     <li><a data-bind="attr: {href: url}, text: label"></a></li>
 </ol>
 <div class="notifications-container"></div>
+<!-- /ko -->

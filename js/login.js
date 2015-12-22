@@ -32,6 +32,7 @@ define([
 
 		render: function () {
 			$(this.el).html(this.template());
+			ko.cleanNode(this.el);
 			ko.applyBindings(this.viewModel, this.el);
 			$("#login-form").validator();
 		}
